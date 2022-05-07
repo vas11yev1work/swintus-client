@@ -1,0 +1,62 @@
+.new-game {
+  padding-top: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .game-name {
+    text-align: center;
+    font-family: 'Press Start 2P', sans-serif;
+    &__title {
+      &_large {
+        font-size: 84px;
+        color: $color-brand-red;
+      }
+      &_small {
+        font-size: 48px;
+        margin-top: 10px;
+        color: $color-brand-blue;
+      }
+    }
+  }
+  .game-form {
+    margin-top: 70px;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    &__input {
+      margin-bottom: 20px;
+    }
+    &__button {
+      height: 52px;
+      border: none;
+      border-radius: 4px;
+      color: $color-white;
+      font-weight: 600;
+      transition: 0.2s;
+      &_red {
+        background-color: $color-brand-red;
+        &:hover {
+          background-color: darken($color-brand-red, 5%);
+        }
+      }
+      &_blue {
+        background-color: $color-brand-blue;
+        &:hover {
+          background-color: darken($color-brand-blue, 3%);
+        }
+      }
+    }
+  }
+  .switcher {
+    text-decoration: underline;
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
