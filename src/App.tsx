@@ -18,7 +18,7 @@ export const App = () => {
   return (
     <>
       <div className="application">{routes}</div>
-      <Toaster position="top-right" toastOptions={{ duration: 5000 }} />
+      <Toaster position="top-right" toastOptions={{ duration: 4000 }} />
     </>
   );
 };
