@@ -10,12 +10,12 @@ import './assets/index.scss';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RecoilRoot>
-      <SocketInterceptorLayout>
-        <BrowserRouter>
+    <BrowserRouter>
+      <RecoilRoot>
+        <SocketInterceptorLayout>
           <App />
-        </BrowserRouter>
-      </SocketInterceptorLayout>
-    </RecoilRoot>
+        </SocketInterceptorLayout>
+      </RecoilRoot>
+    </BrowserRouter>
   </React.StrictMode>
 );

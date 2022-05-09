@@ -1,12 +1,10 @@
 import './NewGame.scss';
-import { FormInput } from '../components/FormInput/FormInput';
-import { useInput } from '../hooks/input';
+import { FormInput } from '../../components/FormInput/FormInput';
+import { useInput } from '../../hooks/useInput';
 import { FormEvent, useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { socket } from '../helpers/socket';
-import { SocketEmit } from '../helpers/constants';
-import { useRecoilState } from 'recoil';
-import { gameInfoState, profileState } from '../store';
+import { socket } from '../../helpers/socket';
+import { SocketEmit } from '../../helpers/constants';
 
 enum Screen {
   CREATE,
@@ -14,9 +12,6 @@ enum Screen {
 }
 
 export const NewGame = () => {
-  const [profile] = useRecoilState(profileState);
-  const [gameInfo] = useRecoilState(gameInfoState);
-
   const gameName = useInput('');
   const username = useInput('');
 
@@ -61,15 +56,19 @@ export const NewGame = () => {
         <h1 className="game-name__title_large">Свинтус</h1>
         <h1 className="game-name__title_small">Онлайн</h1>
       </div>
-      <pre>{JSON.stringify(profile)}</pre>
-      <pre>{JSON.stringify(gameInfo)}</pre>
-      <form className="game-form" onSubmit={e => gameHandler(e)}>
+      <form className="game-form" onSubmit={gameHandler}>
         <FormInput
+          maxlength={32}
           className="game-form__input"
           label="Название комнаты"
-          {...gameName}
+          {...gameName.bind}
         />
-        <FormInput className="game-form__input" label="Никнейм" {...username} />
+        <FormInput
+          maxlength={32}
+          className="game-form__input"
+          label="Никнейм"
+          {...username.bind}
+        />
         <button
           type="submit"
           className={[

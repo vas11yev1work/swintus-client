@@ -15,6 +15,8 @@ export interface ErrorMessage {
 
 export interface GameInfo {
   id: number;
+  uuid: string;
+  gameName: string;
   gameStatus: GameStatus;
 }
 
@@ -26,3 +28,9 @@ export interface ProfileData {
 }
 
 export type PublicUserData = Omit<ProfileData, 'cards'>;
+
+export interface Message {
+  username: string;
+  message: string;
+  isAdmin: boolean;
+}

@@ -1,5 +1,10 @@
 import { atom } from 'recoil';
-import { GameInfo, ProfileData } from '../helpers/types';
+import {
+  GameInfo,
+  Message,
+  ProfileData,
+  PublicUserData,
+} from '../helpers/types';
 
 export const gameInfoState = atom<GameInfo | null>({
   key: 'gameInfoState',
@@ -9,4 +14,14 @@ export const gameInfoState = atom<GameInfo | null>({
 export const profileState = atom<ProfileData | null>({
   key: 'profileState',
   default: null,
+});
+
+export const messagesState = atom<Message[]>({
+  key: 'messagesState',
+  default: [],
+});
+
+export const usersState = atom<PublicUserData[]>({
+  key: 'usersState',
+  default: [],
 });

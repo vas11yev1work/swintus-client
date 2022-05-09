@@ -1,0 +1,50 @@
+.game-board {
+  padding: 10px;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  .info-line {
+    max-height: 32px;
+    &__game-name {
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 22px;
+      margin-bottom: 10px;
+      white-space: nowrap;
+    }
+  }
+  .game-info {
+    height: 100%;
+    display: flex;
+    &__block {
+      max-width: 260px;
+      width: 100%;
+      background-color: $color-white;
+      border: 1px solid $color-input-border;
+      border-radius: 4px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      max-height: calc(100vh - 20px - 32px);
+    }
+  }
+  .users {
+    border-bottom: 1px solid $color-input-border;
+    &__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 15px;
+      border-bottom: 1px solid $color-input-border;
+      .title {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 22px;
+      }
+    }
+    .users-list {
+      padding: 12px 15px;
+    }
+  }
+}

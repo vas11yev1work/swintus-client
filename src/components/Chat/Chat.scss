@@ -1,0 +1,61 @@
+.chat {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  position: relative;
+  overflow-y: auto;
+  &__title {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    padding: 12px 15px;
+  }
+  .messages-wrap {
+    padding: 0 15px 52px 15px;
+    overflow-y: auto;
+    flex-grow: 1;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    .message {
+      margin-bottom: 10px;
+      &:nth-last-child(2) {
+        margin-bottom: 0;
+      }
+      &__text {
+        font-size: 14px;
+        font-weight: 500;
+        word-break: break-all;
+      }
+      &__identifier {
+        &_blue {
+          color: $color-brand-blue;
+        }
+        &_red {
+          color: $color-brand-red;
+        }
+      }
+    }
+  }
+  .message-form {
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid $color-input-border;
+    &__input {
+      height: 40px;
+      width: 100%;
+      font-size: 14px;
+      padding: 0 15px;
+      font-weight: 500;
+      border: none;
+      background-color: $color-white;
+      border-radius: 0 0 4px 4px;
+      &::placeholder {
+        color: #A9A9A9;
+      }
+    }
+  }
+}

@@ -5,17 +5,27 @@ import { toast } from 'react-hot-toast';
 import {
   ErrorMessage,
   GameInfo,
+  Message,
   ProfileData,
   PublicUserData,
 } from '../helpers/types';
 import { useRecoilState } from 'recoil';
-import { gameInfoState, profileState } from '../store';
+import {
+  gameInfoState,
+  messagesState,
+  profileState,
+  usersState,
+} from '../store';
+import { useNavigate } from 'react-router-dom';
 
 export const SocketInterceptorLayout: React.FC<{
   children: JSX.Element;
 }> = props => {
+  const navigate = useNavigate();
   const [gameInfo, setGameInfo] = useRecoilState(gameInfoState);
   const [profileInfo, setProfileInfo] = useRecoilState(profileState);
+  const [messages, setMessages] = useRecoilState(messagesState);
+  const [users, setUsers] = useRecoilState(usersState);
 
   const listeners = [
     {
@@ -38,6 +48,7 @@ export const SocketInterceptorLayout: React.FC<{
       name: SocketOn.GAME_INFO,
       handler: (game: GameInfo) => {
         setGameInfo(game);
+        navigate('/game');
       },
     },
     {
@@ -49,12 +60,36 @@ export const SocketInterceptorLayout: React.FC<{
     {
       name: SocketOn.USER_JOINED,
       handler: (user: PublicUserData) => {
-        toast.success(`Присоединился пользователь ${user.username}!`);
+        setMessages(lastMessages => {
+          return [
+            ...lastMessages,
+            {
+              username: 'ADMIN',
+              isAdmin: true,
+              message: `Пользователь ${user.username} присоединился к игре`,
+            },
+          ];
+        });
+      },
+    },
+    {
+      name: SocketOn.NEW_MESSAGE,
+      handler: (message: Message) => {
+        setMessages(lastMessages => {
+          return [...lastMessages, message];
+        });
+      },
+    },
+    {
+      name: SocketOn.USERS_LIST,
+      handler: (users: PublicUserData[]) => {
+        setUsers(users);
       },
     },
   ];
 
   useEffect(() => {
+    console.log('socket interceptor');
     /* При использовании React.StrictMode происходит двойной
      * вызов useEffect. Эта конструкция нужна для того, чтобы
      * не подписываться на события несколько раз. Работает

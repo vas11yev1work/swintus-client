@@ -5,8 +5,12 @@ export const useInput = (init: string) => {
 
   return {
     value,
-    onChange: (event: ChangeEvent<HTMLInputElement>) => {
-      setValue(event.target.value);
+    change: setValue,
+    bind: {
+      value,
+      onChange: (event: ChangeEvent<HTMLInputElement>) => {
+        setValue(event.target.value);
+      },
     },
   };
 };
